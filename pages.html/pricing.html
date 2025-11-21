@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Perspective AI</title>
+    <link rel="icon" href="/Images/perspective-ai.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/pages.css/base.css">
+    <link rel="stylesheet" href="/pages.css/pricing.css">
+
+</head>
+
+<body>
+    <div class="ai-icons">
+        <i class="bi bi-cpu"></i>
+        <i class="bi bi-gear-fill"></i>
+        <i class="bi bi-lightbulb-fill"></i>
+        <i class="bi bi-diagram-3-fill"></i>
+        <i class="bi bi-graph-up-arrow"></i>
+        <i class="bi bi-cpu"></i>
+        <i class="bi bi-gear-fill"></i>
+        <i class="bi bi-lightbulb-fill"></i>
+        <i class="bi bi-diagram-3-fill"></i>
+        <i class="bi bi-graph-up-arrow"></i>
+        <i class="bi bi-cpu"></i>
+        <i class="bi bi-gear-fill"></i>
+        <i class="bi bi-lightbulb-fill"></i>
+        <i class="bi bi-diagram-3-fill"></i>
+        <i class="bi bi-graph-up-arrow"></i>
+    </div>
+    <!-- === NAVIGATION === -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="/Images/perspective-ai.png" alt="Perspective AI Logo">
+                    Perspective AI
+                </a>
+
+                <!-- Mobile Toggle -->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <!-- Navigation Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages.html/AboutUs.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages.html/services.html">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages.html/ai-tools.html">AI Tools</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/pages.html/pricing.html">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages.html/contact.html">Contact</a>
+                        </li>
+                    </ul>
+
+                    <button class="btn btn-outline-light me-3" id="themeToggle">
+                        <i class="bi bi-sun-fill" id="themeIcon"></i>
+                    </button>
+                    <!-- Get Started Button -->
+                    <a href="contact.html" class="btn-get-started">
+                        Get Started
+                    </a>
+                    <!-- Battery indicator -->
+                    <div class="battery" id="battery-status" style="margin-left:auto; font-size:20px; color:white;">
+                        🔋 Loading...
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Chatbot Widget -->
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbotToggle" class="chatbot-toggle">
+        <i class="bi bi-chat-dots-fill"></i>
+        <span id="chatText">Chat with us</span>
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatbotWindow" class="chatbot-window d-none">
+        <div class="chatbot-header">
+            <span>AI Contact Bot</span>
+            <button class="chatbot-close" id="chatbotClose">✖</button>
+        </div>
+        <div class="chatbot-body" id="chatbotMessages">
+            <div class="chatbot-msg bot">👋 Hi! I’m here to help. What’s your question?</div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="chatbotInput" placeholder="Type a message...">
+            <button id="chatbotSend">Send</button>
+        </div>
+    </div>
+
+    <!-- Vertical Right-Center Feedback Button -->
+    <button class="feedback-toggle" id="feedbackToggle">
+        Feedback <i class="bi bi-chat-dots"></i>
+    </button>
+
+    <!-- Feedback Modal -->
+    <div class="feedback-modal" id="feedbackModal">
+        <div class="feedback-header">
+            <span>Perspective AI Feedback</span>
+            <button id="closeFeedback"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="feedback-body">
+            <div class="feedback-option"><i class="bi bi-bug"></i> Bug Report</div>
+            <div class="feedback-option"><i class="bi bi-lightbulb"></i> Feature Request</div>
+            <div class="feedback-option"><i class="bi bi-star"></i> General Feedback</div>
+        </div>
+
+        <div class="feedback-footer" style="display: flex; flex-direction: column; gap: 10px; padding: 16px;">
+            <textarea class="feedback-textarea" placeholder="Your feedback..." style="margin: 20px;"></textarea>
+            <button type="submit" class="feedback-submit" style="
+        background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);">
+                Submit Feedback
+            </button>
+        </div>
+    </div>
+
+
+
+    <!--curser-->
+
+
+
+    <div class="pointer" id="movee"></div>
+
+
+
+
+    <div class="ptblr" id="mov1"></div>
+
+
+    <div class="social-flip">
+        <div class="social-inner">
+            <!-- Front -->
+            <div class="social-front">SOCIAL</div>
+            <!-- Back -->
+            <div class="social-back">
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- === PAGE HEADER === -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Choose Your AI Plan</h1>
+            <p class="page-subtitle">
+                Flexible pricing designed to grow with your business. Start free and upgrade anytime.
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- === PLAN TOGGLE === -->
+    <section class="section">
+        <div class="container">
+            <div class="plan-toggle-container">
+                <label>
+                    <input type="radio" name="billingCycle" value="monthly" checked />
+                    <span>Monthly</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="billingCycle" value="yearly" />
+                    <span>Yearly <span class="savings"><strong>Save 17%</strong></span></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- === PRICING PLANS === -->
+        <div class="container pricing-card">
+            <div class="row justify-content-center">
+
+                <!-- Starter Plan -->
+                <div class="col-lg-4 col-md-6 mb-2">
+                    <div class="pricing-card">
+                        <h3 class="plan-name">Starter</h3>
+                        <div class="plan-price" data-monthly="₹2,999" data-yearly="₹29,990">₹2,999</div>
+                        <div class="plan-period">per month</div>
+                        <p class="plan-description">
+                            Perfect for small businesses and startups looking to implement basic AI solutions.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle"></i> AI Text Generator (10,000 words/month)</li>
+                            <li><i class="bi bi-check-circle"></i> Basic AI Chatbot</li>
+                            <li><i class="bi bi-check-circle"></i> 50 Image Generations/month</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> AI Video Generator</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> AI Audio Generator</li>
+                            <li><i class="bi bi-check-circle"></i> Email Support (24–48 hrs)</li>
+                            <li><i class="bi bi-check-circle"></i> 2 API Integrations</li>
+                            <li><i class="bi bi-check-circle"></i> Basic Analytics Dashboard</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Custom AI Models</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Custom Integrations</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Custom Branding</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> API Access & Documentation</li>
+                            <li><i class="bi bi-check-circle"></i> 30 Days Data Retention</li>
+                            <li><i class="bi bi-check-circle"></i> 1 User</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> On-premise Deployment</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="col-lg-4 col-md-6 mb-2">
+                    <div class="pricing-card popular">
+                        <h3 class="plan-name">Professional</h3>
+                        <div class="plan-price" data-monthly="₹7,999" data-yearly="₹79,990">₹7,999</div>
+                        <div class="plan-period">per month</div>
+                        <p class="plan-description">
+                            Ideal for growing businesses requiring advanced AI capabilities and integrations.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle"></i> AI Text Generator (50,000 words/month)</li>
+                            <li><i class="bi bi-check-circle"></i> Advanced AI Chatbot with Memory</li>
+                            <li><i class="bi bi-check-circle"></i> 500 Image Generations/month</li>
+                            <li><i class="bi bi-check-circle"></i> AI Video Generator (10 videos/month)</li>
+                            <li><i class="bi bi-check-circle"></i> AI Audio Generator</li>
+                            <li><i class="bi bi-check-circle"></i> Priority Support (4–12 hrs)</li>
+                            <li><i class="bi bi-check-circle"></i> 10 API Integrations</li>
+                            <li><i class="bi bi-check-circle"></i> Advanced Analytics & Insights</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Custom AI Models</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Custom Integrations</li>
+                            <li><i class="bi bi-check-circle"></i> Custom Branding</li>
+                            <li><i class="bi bi-check-circle"></i> Full API Access & Documentation</li>
+                            <li><i class="bi bi-check-circle"></i> 90 Days Data Retention</li>
+                            <li><i class="bi bi-check-circle"></i> 5 Users</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> On-premise Deployment</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="col-lg-4 col-md-6 mb-2">
+                    <div class="pricing-card">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <div class="plan-price" data-monthly="Custom" data-yearly="Custom">Custom</div>
+                        <div class="plan-period">pricing</div>
+                        <p class="plan-description">
+                            Tailored solutions for large enterprises with specific AI and compliance needs.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle"></i> Unlimited AI Text Generation</li>
+                            <li><i class="bi bi-check-circle"></i> Enterprise AI Chatbot, Custom Built</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Image Generations</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Video & Audio Generation</li>
+                            <li><i class="bi bi-check-circle"></i> AI Personal Assistant</li>
+                            <li><i class="bi bi-check-circle"></i> 24/7 Dedicated Support</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited API Integrations + Webhooks</li>
+                            <li><i class="bi bi-check-circle"></i> Enterprise Analytics + Custom Reports</li>
+                            <li><i class="bi bi-check-circle"></i> Custom AI Models</li>
+                            <li><i class="bi bi-check-circle"></i> Custom Integrations & Development</li>
+                            <li><i class="bi bi-check-circle"></i> Custom Branding</li>
+                            <li><i class="bi bi-check-circle"></i> Full API Access + Webhook Support</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Data Retention + Backup</li>
+                            <li><i class="bi bi-check-circle"></i> Unlimited Users</li>
+                            <li><i class="bi bi-check-circle"></i> On-premise Deployment</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta">Contact Sales</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+
+
+    <!-- === API PRICING === -->
+    <section class="section apipric" style="background: rgba(26, 26, 46, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title">API Pricing</h2>
+                    <p class="section-subtitle">
+                        Pay-as-you-use pricing for our AI APIs with no monthly commitments
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Text & Chat API -->
+                <div class="col-lg-3 mb-4">
+                    <div class="pricing-card">
+                        <h3 class="plan-name">Text & Chat API</h3>
+                        <br>
+                        <div class="plan-price">₹0.20</div>
+                        <div class="plan-period">per 1,000 tokens</div>
+                        <p class="plan-description">
+                            High-quality text generation and conversational AI capabilities.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle text-success"></i> GPT-4 & Gemini Models</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Context-aware responses</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Multiple output formats</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Real-time streaming</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Image Generation not included</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Video & Audio Generation not included</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta secondary">Start Building</a>
+                    </div>
+                </div>
+
+                <!-- Media Generation API -->
+                <div class="col-lg-3 mb-4">
+                    <div class="pricing-card">
+                        <h3 class="plan-name">Media Generation API</h3>
+                        <div class="plan-price">₹50</div>
+                        <div class="plan-period">per video/audio minute</div>
+                        <p class="plan-description">
+                            Advanced video and audio generation with professional quality output.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle text-success"></i> HD Video Generation</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Natural Voice Synthesis</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Music Composition</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Multiple Format Export</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Text & Chat API features not included</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Image Generation not included</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta secondary">Start Building</a>
+                    </div>
+                </div>
+
+                <!-- Image Generation API -->
+                <div class="col-lg-3 mb-4">
+                    <div class="pricing-card">
+                        <h3 class="plan-name">Image Generation API</h3>
+                        <div class="plan-price">₹10</div>
+                        <div class="plan-period">per image</div>
+                        <p class="plan-description">
+                            Generate high-quality AI images from text prompts with customizable styles.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle text-success"></i> Multiple Model Styles (Realistic, Anime,
+                                3D)</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Prompt & Negative Prompt Support</li>
+                            <li><i class="bi bi-check-circle text-success"></i> HD and 4K Output Options</li>
+                            <li><i class="bi bi-check-circle text-success"></i> API and Webhook Access</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Video & Audio Generation not included</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Text & Chat API features not included</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta secondary">Start Building</a>
+                    </div>
+                </div>
+
+                <!-- Custom AI Model API -->
+                <div class="col-lg-3 mb-4">
+                    <div class="pricing-card">
+                        <h3 class="plan-name">Custom AI Model API</h3>
+                        <div class="plan-price">₹5.00</div>
+                        <div class="plan-period">per 1,000 tokens</div>
+                        <p class="plan-description">
+                            Host, manage, and deploy your own AI models with secure, scalable infrastructure.
+                        </p>
+                        <ul class="plan-features">
+                            <li><i class="bi bi-check-circle text-success"></i> BYO Model (HuggingFace, ONNX, etc.)</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Fine-tuning Support</li>
+                            <li><i class="bi bi-check-circle text-success"></i> GPU Acceleration</li>
+                            <li><i class="bi bi-check-circle text-success"></i> Secure Private Inference</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Media Generation not included</li>
+                            <li><i class="bi bi-x-circle text-danger"></i> Translation API features not included</li>
+                        </ul>
+                        <a href="contact.html" class="plan-cta secondary">Start Building</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- === AI PLATFORM COMPARISON === -->
+    <section class="section" style="background: rgba(26, 26, 46, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title">AI Platform Comparison</h2>
+                    <p class="section-subtitle">
+                        See how <strong>Perspective AI</strong> stacks up against top competitors
+                    </p>
+                </div>
+            </div>
+
+            <div class="comparison-table mt-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-white text-center">
+                        <thead>
+                            <tr>
+                                <th class="text-start">Feature</th>
+                                <th>Perspective AI<br><small>(Starter ₹2,999 / Pro ₹7,999 / Enterprise - Custom)</small>
+                                </th>
+                                <th>Anthropic Claude<br><small>(Pro / Max)</small></th>
+                                <th>OpenAI GPT API<br><small>(Pay-as-you-go)</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start">Pricing Model</td>
+                                <td>Fixed plans + custom pricing</td>
+                                <td>Subscription plans ($20 – $200/mo)</td>
+                                <td>Pay-as-you-go pricing</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Text Generation</td>
+                                <td>10K – Unlimited tokens/month</td>
+                                <td>Included with tier-based limits</td>
+                                <td>$0.05 per 1K input tokens, $0.40 per 1K output tokens</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Image Generation</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Included</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Video Generation</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Included (Pro+ plans)</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Audio Generation</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Available (Pro+ plans)</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Available</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Custom AI Models</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not included (Starter & Pro)<br>
+                                    <i class="bi bi-check-circle text-success"></i> Available (Enterprise)
+                                </td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not included (Pro)<br>
+                                    <i class="bi bi-check-circle text-success"></i> Available (Enterprise)
+                                </td>
+                                <td><i class="bi bi-check-circle text-success"></i> Fine-tuning available</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Analytics & Reporting</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Basic (Starter)<br>
+                                    <i class="bi bi-check-circle text-success"></i> Advanced (Pro)<br>
+                                    <i class="bi bi-check-circle text-success"></i> Custom (Enterprise)
+                                </td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Basic usage logs</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Support Level</td>
+                                <td>Email support (Starter)<br>
+                                    <i class="bi bi-check-circle text-success"></i> Priority support (Pro)<br>
+                                    <i class="bi bi-check-circle text-success"></i> 24/7 + Dedicated Manager
+                                    (Enterprise)
+                                </td>
+                                <td>Email / Priority support (Max)</td>
+                                <td>Email support</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Team Members</td>
+                                <td>1 user (Starter)<br>5 users (Pro)<br>Unlimited users (Enterprise)</td>
+                                <td>Subscription add-on ($30/user/month)</td>
+                                <td>Access via API keys</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">API Access</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not included (Starter)<br>
+                                    <i class="bi bi-check-circle text-success"></i> Included (Pro & Enterprise)
+                                </td>
+                                <td><i class="bi bi-check-circle text-success"></i> Included</td>
+                                <td><i class="bi bi-check-circle text-success"></i> Included</td>
+                            </tr>
+                            <tr>
+                                <td class="text-start">Free Trial</td>
+                                <td><i class="bi bi-check-circle text-success"></i> 14 days (All plans)</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                                <td><i class="bi bi-x-circle text-danger"></i> Not available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- === PRICING FAQ (Accordion style) === -->
+    <section class="section faq-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title">Pricing FAQs</h2>
+                    <p class="section-subtitle">
+                        Common questions about our pricing and billing
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="pricingFaqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="pricingHeadingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#pricingCollapseOne" aria-expanded="true"
+                                    aria-controls="pricingCollapseOne">
+                                    Can I change my plan anytime?
+                                </button>
+                            </h2>
+                            <div id="pricingCollapseOne" class="accordion-collapse collapse show"
+                                aria-labelledby="pricingHeadingOne" data-bs-parent="#pricingFaqAccordion">
+                                <div class="accordion-body">
+                                    Yes, you can upgrade or downgrade your plan at any time. Changes take effect
+                                    immediately,
+                                    and we'll prorate the billing accordingly. There are no penalties for changing
+                                    plans.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="pricingHeadingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#pricingCollapseTwo" aria-expanded="false"
+                                    aria-controls="pricingCollapseTwo">
+                                    What payment methods do you accept?
+                                </button>
+                            </h2>
+                            <div id="pricingCollapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="pricingHeadingTwo" data-bs-parent="#pricingFaqAccordion">
+                                <div class="accordion-body">
+                                    We accept all major credit cards (Visa, MasterCard, American Express), bank
+                                    transfers, and
+                                    digital payment methods like UPI, PayPal, and Razorpay for Indian customers.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="pricingHeadingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#pricingCollapseThree" aria-expanded="false"
+                                    aria-controls="pricingCollapseThree">
+                                    Is there a free trial available?
+                                </button>
+                            </h2>
+                            <div id="pricingCollapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="pricingHeadingThree" data-bs-parent="#pricingFaqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we offer a 14-day free trial for all plans. You can test our AI services with
+                                    limited
+                                    usage to see if they meet your needs before committing to a paid plan.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="pricingHeadingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#pricingCollapseFour" aria-expanded="false"
+                                    aria-controls="pricingCollapseFour">
+                                    Do you offer custom enterprise pricing?
+                                </button>
+                            </h2>
+                            <div id="pricingCollapseFour" class="accordion-collapse collapse"
+                                aria-labelledby="pricingHeadingFour" data-bs-parent="#pricingFaqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we provide custom pricing for enterprise clients with specific requirements,
+                                    high-volume usage, or special compliance needs. Contact our sales team for a
+                                    personalized
+                                    quote.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="pricingHeadingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#pricingCollapseFive" aria-expanded="false"
+                                    aria-controls="pricingCollapseFive">
+                                    What happens if I exceed my plan limits?
+                                </button>
+                            </h2>
+                            <div id="pricingCollapseFive" class="accordion-collapse collapse"
+                                aria-labelledby="pricingHeadingFive" data-bs-parent="#pricingFaqAccordion">
+                                <div class="accordion-body">
+                                    If you exceed your plan limits, we'll notify you and offer options to upgrade your
+                                    plan or
+                                    purchase additional credits. Services won't be interrupted, but overage charges may
+                                    apply at
+                                    standard rates.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/index.html">Home</a>
+                <a href="/pages.html/AboutUs.html">About</a>
+                <a href="/pages.html/services.html">Services</a>
+                <a href="/pages.html/ai-tools.html">Ai Tools</a>
+                <a href="/pages.html/contact.html ">Contact</a>
+                <a href="/pages.html/pricing.html active">Pricing</a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2025 Perspective AI. All rights reserved. | Pune,
+                    Maharashtra, India</p>
+                <p>Leading AI Solutions Provider | Transforming Businesses
+                    with Artificial Intelligence</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+    </script>
+    <script src="/script.js/pricingani.js"></script>
+    <script>
+        // Get all price elements and radios
+        const priceElements = document.querySelectorAll(".plan-price");
+        const periodElements = document.querySelectorAll(".plan-period");
+        const radios = document.querySelectorAll("input[name='billingCycle']");
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", () => {
+                const isYearly = radio.value === "yearly";
+
+                priceElements.forEach(priceEl => {
+                    const monthlyPrice = priceEl.getAttribute("data-monthly");
+                    const yearlyPrice = priceEl.getAttribute("data-yearly");
+
+                    // Update price text
+                    priceEl.textContent = isYearly ? yearlyPrice : monthlyPrice;
+                });
+
+                periodElements.forEach(periodEl => {
+                    periodEl.textContent = isYearly ? "per year" : "per month";
+                });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/script.js/toggle.js"></script>
+    <script src="/script.js/cursor.js"></script>
+    <script src="/script.js/feedack.js"></script>
+    <script src="/script.js/faq_icon_toggle.js"></script>
+    <script>
+        if ('getBattery' in navigator) {
+            navigator.getBattery().then(function (battery) {
+                function updateBattery() {
+                    const level = Math.round(battery.level * 100);
+                    const charging = battery.charging ? "⚡" : "";
+                    document.getElementById("battery-status").textContent =
+                        `🔋 ${level}% ${charging}`;
+                }
+
+                // Initial update
+                updateBattery();
+
+                // Update on change
+                battery.addEventListener("levelchange", updateBattery);
+                battery.addEventListener("chargingchange", updateBattery);
+            });
+        } else {
+            document.getElementById("battery-status").textContent =
+                "⚠️ Battery API not supported";
+        }
+    </script>
+
+    <script>
+        const toggle = document.getElementById('chatbotToggle');
+        const windowEl = document.getElementById('chatbotWindow');
+        const closeBtn = document.getElementById('chatbotClose');
+        const input = document.getElementById('chatbotInput');
+        const sendBtn = document.getElementById('chatbotSend');
+        const messages = document.getElementById('chatbotMessages');
+        const chatText = document.getElementById('chatText');
+
+        // Toggle chatbot
+        toggle.addEventListener('click', () => {
+            windowEl.classList.toggle('d-none');
+            chatText.innerText = ""; // remove text after first click
+        });
+
+        closeBtn.addEventListener('click', () => {
+            windowEl.classList.add('d-none');
+            chatText.innerText = "Chat with us"; // restore text on close
+        });
+
+        // Send Message
+        sendBtn.addEventListener('click', () => {
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = "chatbot-msg user";
+            userMsg.textContent = msg;
+            messages.appendChild(userMsg);
+
+            input.value = "";
+
+            setTimeout(() => {
+                const aiMsg = document.createElement('div');
+                aiMsg.className = "chatbot-msg bot";
+                aiMsg.textContent = "📩 Thanks for reaching out! Please leave your email and we’ll contact you soon.";
+                messages.appendChild(aiMsg);
+                messages.scrollTop = messages.scrollHeight;
+            }, 800);
+        });
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Services - Perspective AI</title>
+    <link rel="icon" href="/Images/perspective-ai.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/pages.css/base.css" />
+
+
+    <meta
+      name="description"
+      content="Perspective AI offers cutting-edge AI solutions including AI Chat Bots, AI Text Generators, AI Video Generators, and more. Transform your business with our advanced artificial intelligence services."
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    
+    <link rel="stylesheet" href="/pages.css/services.css" />
+  </head>
+
+  <body>
+
+
+   <div class="ai-icons">
+  <i class="bi bi-cpu"></i>
+  <i class="bi bi-gear-fill"></i>
+  <i class="bi bi-lightbulb-fill"></i>
+  <i class="bi bi-diagram-3-fill"></i>
+  <i class="bi bi-graph-up-arrow"></i>
+  <i class="bi bi-cpu"></i>
+  <i class="bi bi-gear-fill"></i>
+  <i class="bi bi-lightbulb-fill"></i>
+  <i class="bi bi-diagram-3-fill"></i>
+  <i class="bi bi-graph-up-arrow"></i>
+  <i class="bi bi-cpu"></i>
+  <i class="bi bi-gear-fill"></i>
+  <i class="bi bi-lightbulb-fill"></i>
+  <i class="bi bi-diagram-3-fill"></i>
+  <i class="bi bi-graph-up-arrow"></i>
+</div>
+
+    <!-- === NAVIGATION === -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+      <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="index.html">
+          <img src="/Images/perspective-ai.png" alt="Perspective AI Logo" />
+          Perspective AI
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages.html/AboutUs.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/pages.html/services.html"
+                >Services</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages.html/ai-tools.html">AI Tools</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages.html/pricing.html">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages.html/contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <button class="btn btn-outline-light me-3" id="themeToggle">
+            <i class="bi bi-sun-fill" id="themeIcon"></i>
+          </button>
+
+          <!-- Get Started Button -->
+          <a href="contact.html" class="btn-get-started"> Get Started </a>
+
+                       <!-- Battery indicator -->
+  <div class="battery" id="battery-status" style="margin-left:auto; font-size:20px; color:white;">
+    🔋 Loading...
+  </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Chatbot Widget -->
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbotToggle" class="chatbot-toggle">
+      <i class="bi bi-chat-dots-fill"></i>
+      <span id="chatText">Chat with us</span>
+    </button>
+
+    <!-- Chatbot Window -->
+    <div id="chatbotWindow" class="chatbot-window d-none">
+      <div class="chatbot-header">
+        <span>AI Contact Bot</span>
+        <button class="chatbot-close" id="chatbotClose">✖</button>
+      </div>
+      <div class="chatbot-body" id="chatbotMessages">
+        <div class="chatbot-msg bot">
+          👋 Hi! I’m here to help. What’s your question?
+        </div>
+      </div>
+      <div class="chatbot-footer">
+        <input type="text" id="chatbotInput" placeholder="Type a message..." />
+        <button id="chatbotSend">Send</button>
+      </div>
+    </div>
+
+    <!-- Vertical Right-Center Feedback Button -->
+    <button class="feedback-toggle" id="feedbackToggle">
+      Feedback <i class="bi bi-chat-dots"></i>
+    </button>
+
+    <!-- Feedback Modal -->
+    <div class="feedback-modal" id="feedbackModal">
+      <div class="feedback-header">
+        <span>Perspective AI Feedback</span>
+        <button id="closeFeedback"><i class="bi bi-x"></i></button>
+      </div>
+      <div class="feedback-body">
+        <div class="feedback-option"><i class="bi bi-bug"></i> Bug Report</div>
+        <div class="feedback-option">
+          <i class="bi bi-lightbulb"></i> Feature Request
+        </div>
+        <div class="feedback-option">
+          <i class="bi bi-star"></i> General Feedback
+        </div>
+      </div>
+
+      <div
+        class="feedback-footer"
+        style="display: flex; flex-direction: column; gap: 10px; padding: 16px"
+      >
+        <textarea
+          class="feedback-textarea"
+          placeholder="Your feedback..."
+          style="margin: 20px"
+        ></textarea>
+        <button
+          type="submit"
+          class="feedback-submit"
+          style="
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+          "
+        >
+          Submit Feedback
+        </button>
+      </div>
+    </div>
+
+    <div class="social-flip">
+      <div class="social-inner">
+        <!-- Front -->
+        <div class="social-front">SOCIAL</div>
+        <!-- Back -->
+        <div class="social-back">
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!--curser-->
+
+    <div class="pointer" id="movee"></div>
+
+    <div class="ptblr" id="mov1"></div>
+
+
+    <!-- === AI SERVICES === -->
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="section-title">Complete AI Solutions Suite</h2>
+            <p class="section-subtitle">
+              From intelligent chatbots to content generation, our AI services
+              cover every aspect of modern business automation
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- AI Image Generator -->
+          <div class="col-lg-6 mb-4">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-image"></i>
+              </div>
+              <h3 class="service-title">AI Image Generator</h3>
+              <p class="service-description">
+                Create stunning, high-resolution images from text descriptions
+                with our advanced AI image generation service. Perfect for
+                marketing visuals, product concepts, artwork, and design
+                prototypes.
+              </p>
+
+              <div class="comparison-container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">What We Offer</h6>
+                    <ul class="service-features">
+                      <li>
+                        <i class="bi bi-check-circle"></i> DALL-E 3 & Stable
+                        Diffusion
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> 4K Ultra HD
+                        resolution
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Multiple artistic
+                        styles
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Custom aspect ratios
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Commercial usage
+                        rights
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">Others Provide</h6>
+                    <ul class="comparison-features">
+                      <li>
+                        <i class="bi bi-x-circle"></i> Limited to 1024px
+                        resolution
+                      </li>
+                      <li><i class="bi bi-x-circle"></i> Watermarked images</li>
+                      <li><i class="bi bi-x-circle"></i> Few style options</li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Fixed image dimensions
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Non-commercial license
+                        only
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-pricing">
+                <div class="price-label">Starting from</div>
+                <div class="price-amount">₹3,499/month</div>
+              </div>
+              <div class="tech-stack">
+                <h6>Powered by:</h6>
+                <span class="api-badge">OpenAI DALL-E 3</span>
+                <span class="api-badge">Stable Diffusion</span>
+                <span class="api-badge">Midjourney API</span>
+              </div>
+              <a href="contact.html" class="service-cta mt-3">Get Started</a>
+              <button
+                class="service-cta mt-3"
+                data-bs-toggle="modal"
+                data-bs-target="#imageGeneratorModal"
+              >
+                Try Now
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Chat Bot -->
+          <div class="col-lg-6 mb-4">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-chat-dots"></i>
+              </div>
+              <h3 class="service-title">AI Chat Bot</h3>
+              <p class="service-description">
+                Deploy intelligent conversational AI that handles customer
+                queries, provides support, and engages users 24/7 with
+                human-like interactions and contextual understanding.
+              </p>
+
+              <div class="comparison-container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">What We Offer</h6>
+                    <ul class="service-features">
+                      <li>
+                        <i class="bi bi-check-circle"></i> Natural language
+                        processing
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> 24/7 automated
+                        customer support
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Multi-platform
+                        integration
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Context-aware
+                        conversations
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Analytics and
+                        reporting
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">Others Provide</h6>
+                    <ul class="comparison-features">
+                      <li>
+                        <i class="bi bi-x-circle"></i> Basic keyword matching
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Limited to business hours
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Single platform only
+                      </li>
+                      <li><i class="bi bi-x-circle"></i> No context memory</li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Basic analytics only
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-pricing">
+                <div class="price-label">Starting from</div>
+                <div class="price-amount">₹4,999/month</div>
+              </div>
+              <div class="tech-stack">
+                <h6>Powered by:</h6>
+                <span class="api-badge">OpenAI Assistants</span>
+                <span class="api-badge">Google Gemini</span>
+                <span class="api-badge">Grok AI</span>
+              </div>
+              <a href="contact.html" class="service-cta mt-3">Get Started</a>
+              <button
+                class="service-cta mt-3"
+                data-bs-toggle="modal"
+                data-bs-target="#chatBotModal"
+              >
+                Try Now
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Video Generator -->
+          <div class="col-lg-6 mb-4">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-camera-video"></i>
+              </div>
+              <h3 class="service-title">AI Video Generator</h3>
+              <p class="service-description">
+                Transform text into stunning videos using cutting-edge AI
+                technology. Create professional marketing videos, product demos,
+                and educational content in minutes.
+              </p>
+
+              <div class="comparison-container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">What We Offer</h6>
+                    <ul class="service-features">
+                      <li>
+                        <i class="bi bi-check-circle"></i> Text-to-video
+                        conversion
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Professional video
+                        quality
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Custom branding
+                        options
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Multiple video
+                        formats
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Fast rendering and
+                        delivery
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">Others Provide</h6>
+                    <ul class="comparison-features">
+                      <li>
+                        <i class="bi bi-x-circle"></i> Limited to 720p
+                        resolution
+                      </li>
+                      <li><i class="bi bi-x-circle"></i> Watermarked videos</li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Generic templates only
+                      </li>
+                      <li><i class="bi bi-x-circle"></i> Few export options</li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Slow processing times
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-pricing">
+                <div class="price-label">Starting from</div>
+                <div class="price-amount">₹7,999/month</div>
+              </div>
+              <div class="tech-stack">
+                <h6>Powered by:</h6>
+                <span class="api-badge">Luma Labs AI</span>
+                <span class="api-badge">Runway ML</span>
+                <span class="api-badge">Pika Labs</span>
+              </div>
+              <a href="contact.html" class="service-cta mt-3">Get Started</a>
+              <button
+                class="service-cta mt-3"
+                data-bs-toggle="modal"
+                data-bs-target="#videoGeneratorModal"
+              >
+                Try Now
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Agent -->
+          <div class="col-lg-6 mb-4">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-stack"></i>
+              </div>
+              <h3 class="service-title">AI Agent</h3>
+              <p class="service-description">
+                Our comprehensive AI Agent combines all our specialized services
+                into one powerful solution. Get AI image generation, chatbots,
+                video creation, audio synthesis, music composition, and personal
+                assistance in a single integrated platform.
+              </p>
+
+              <div class="comparison-container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">What We Offer</h6>
+                    <ul class="service-features">
+                      <li>
+                        <i class="bi bi-check-circle"></i> All-in-one AI
+                        solution
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Unified platform
+                        integration
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Cross-service
+                        workflows
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Centralized
+                        management
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Cost-effective bundle
+                        pricing
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">Others Provide</h6>
+                    <ul class="comparison-features">
+                      <li>
+                        <i class="bi bi-x-circle"></i> Separate tools for each
+                        function
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> No integration between
+                        services
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Multiple subscriptions
+                        required
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Disconnected user
+                        experience
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Higher total cost for all
+                        features
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-pricing">
+                <div class="price-label">Starting from</div>
+                <div class="price-amount">₹14,999/month</div>
+                <small style="color: white" class=""
+                  >(Save 30% vs individual services)</small
+                >
+              </div>
+              <div class="tech-stack">
+                <h6>Includes All Our Services:</h6>
+                <span class="api-badge">AI Image Generator</span>
+                <span class="api-badge">AI Chat Bot</span>
+                <span class="api-badge">AI Video Generator</span>
+                <span class="api-badge">AI Audio Generator</span>
+                <span class="api-badge">AI Music Generator</span>
+                <span class="api-badge">AI Personal Assistant</span>
+              </div>
+              <a href="contact.html" class="service-cta mt-3">Get Started</a>
+              <button
+                class="service-cta mt-3"
+                data-bs-toggle="modal"
+                data-bs-target="#unifiedAIModal"
+              >
+                Try Now
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Music Generator -->
+          <div class="col-lg-6 mb-4">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-music-note"></i>
+              </div>
+              <h3 class="service-title">AI Music Generator</h3>
+              <p class="service-description">
+                Create original music compositions and soundtracks using
+                advanced AI algorithms. Perfect for videos, podcasts, games, and
+                commercial projects requiring unique audio content.
+              </p>
+
+              <div class="comparison-container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">What We Offer</h6>
+                    <ul class="service-features">
+                      <li>
+                        <i class="bi bi-check-circle"></i> Original music
+                        composition
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Multiple genres
+                        supported
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Customizable
+                        instruments
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Royalty-free music
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Professional audio
+                        quality
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">Others Provide</h6>
+                    <ul class="comparison-features">
+                      <li>
+                        <i class="bi bi-x-circle"></i> Limited genre selection
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Repetitive compositions
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Fixed instrumentation
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Royalty restrictions
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Basic audio quality
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-pricing">
+                <div class="price-label">Starting from</div>
+                <div class="price-amount">₹5,999/month</div>
+              </div>
+              <div class="tech-stack">
+                <h6>Powered by:</h6>
+                <span class="api-badge">ModelsLab Music</span>
+                <span class="api-badge">Mubert API</span>
+                <span class="api-badge">AIVA</span>
+              </div>
+              <a href="contact.html" class="service-cta mt-3">Get Started</a>
+              <button
+                class="service-cta mt-3"
+                data-bs-toggle="modal"
+                data-bs-target="#musicGeneratorModal"
+              >
+                Try Now
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Personal Assistant -->
+          <div class="col-lg-6 mb-4">
+            <div class="service-card">
+              <div class="service-icon">
+                <i class="bi bi-person-gear"></i>
+              </div>
+              <h3 class="service-title">AI Personal Assistant</h3>
+              <p class="service-description">
+                Deploy intelligent virtual assistants that automate tasks,
+                schedule meetings, manage workflows, and provide personalized
+                support for enhanced productivity and efficiency.
+              </p>
+
+              <div class="comparison-container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">What We Offer</h6>
+                    <ul class="service-features">
+                      <li>
+                        <i class="bi bi-check-circle"></i> Task automation and
+                        scheduling
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Calendar and email
+                        management
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Workflow optimization
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Data analysis and
+                        reporting
+                      </li>
+                      <li>
+                        <i class="bi bi-check-circle"></i> Integration with
+                        business tools
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h6 class="comparison-title">Others Provide</h6>
+                    <ul class="comparison-features">
+                      <li>
+                        <i class="bi bi-x-circle"></i> Basic task management
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Limited integration
+                        options
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> No workflow optimization
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> Simple data reporting
+                      </li>
+                      <li>
+                        <i class="bi bi-x-circle"></i> No custom automation
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="service-pricing">
+                <div class="price-label">Starting from</div>
+                <div class="price-amount">₹6,999/month</div>
+              </div>
+              <div class="tech-stack">
+                <h6>Powered by:</h6>
+                <span class="api-badge">OpenAI Assistants</span>
+                <span class="api-badge">Google Assistant</span>
+                <span class="api-badge">Microsoft Cortana</span>
+              </div>
+              <a href="contact.html" class="service-cta mt-3">Get Started</a>
+              <button
+                class="service-cta mt-3"
+                data-bs-toggle="modal"
+                data-bs-target="#assistantModal"
+              >
+                Try Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- === SERVICE FAQ === -->
+    <section class="section faq-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title">Service FAQs</h2>
+                    <p class="section-subtitle">
+                        Common questions about our AI services and implementation
+                    </p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ Item 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    How quickly can AI services be implemented?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" 
+                                 aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Most AI services can be implemented within 2-4 weeks depending
+                                    on complexity. Simple solutions like chatbots can be deployed in
+                                    as little as 3-5 days, while custom AI models may take 4-8 weeks
+                                    for full development and integration.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Do you provide custom AI solutions?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" 
+                                 aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we specialize in custom AI solutions tailored to your
+                                    specific business needs. Our team works closely with you to
+                                    understand your requirements and develop bespoke AI applications
+                                    that integrate seamlessly with your existing systems.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    What kind of support do you provide after deployment?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" 
+                                 aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We provide comprehensive 24/7 support including monitoring,
+                                    maintenance, updates, troubleshooting, and optimization. Our
+                                    support packages include regular performance reviews and feature
+                                    enhancements to ensure your AI solutions continue to deliver
+                                    optimal results.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Can AI services integrate with existing business systems?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" 
+                                 aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely! Our AI services are designed to integrate seamlessly
+                                    with popular business platforms including CRM systems,
+                                    e-commerce platforms, email marketing tools, and enterprise
+                                    software. We use APIs and webhooks to ensure smooth data flow
+                                    and functionality.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    What is the ROI of implementing AI services?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" 
+                                 aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our clients typically see ROI within 3-6 months of
+                                    implementation. Benefits include 40-60% reduction in operational
+                                    costs, 75% faster response times, improved customer
+                                    satisfaction, and significant time savings on repetitive tasks.
+                                    We provide detailed ROI analysis for each project.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="footer revealUp">
+      <div class="container">
+        <div class="footer-links">
+          <a href="/index.html">Home</a>
+          <a href="/pages.html/AboutUs.html">About</a>
+          <a href="/pages.html/services.html active">Services</a>
+          <a href="/pages.html/ai-tools.html">Ai Tools</a>
+          <a href="/pages.html/contact.html">Contact</a>
+          <a href="/pages.html/pricing.html">Pricing</a>
+        </div>
+        <div class="footer-text">
+          <p>
+            &copy; 2025 Perspective AI. All rights reserved. | Pune,
+            Maharashtra, India
+          </p>
+          <p>
+            Leading AI Solutions Provider | Transforming Businesses with
+            Artificial Intelligence
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modal-container"></div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+</script>
+<script src="/script.js/servicesan.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/script.js/toggle.js"></script>
+    <script>
+      
+    </script>
+    <script>
+      // Load modals from external file
+      fetch("/pages.html/modals.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("modal-container").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading modals:", error));
+    </script>
+    <script src="/script.js/feedack.js"></script>
+    <script src="/script.js/faq_icon_toggle.js"></script>
+    <script>
+      const toggle = document.getElementById("chatbotToggle");
+      const windowEl = document.getElementById("chatbotWindow");
+      const closeBtn = document.getElementById("chatbotClose");
+      const input = document.getElementById("chatbotInput");
+      const sendBtn = document.getElementById("chatbotSend");
+      const messages = document.getElementById("chatbotMessages");
+      const chatText = document.getElementById("chatText");
+
+      // Toggle chatbot
+      toggle.addEventListener("click", () => {
+        windowEl.classList.toggle("d-none");
+        chatText.innerText = ""; // remove text after first click
+      });
+
+      closeBtn.addEventListener("click", () => {
+        windowEl.classList.add("d-none");
+        chatText.innerText = "Chat with us"; // restore text on close
+      });
+
+      // Send Message
+      sendBtn.addEventListener("click", () => {
+        const msg = input.value.trim();
+        if (!msg) return;
+
+        const userMsg = document.createElement("div");
+        userMsg.className = "chatbot-msg user";
+        userMsg.textContent = msg;
+        messages.appendChild(userMsg);
+
+        input.value = "";
+
+        setTimeout(() => {
+          const aiMsg = document.createElement("div");
+          aiMsg.className = "chatbot-msg bot";
+          aiMsg.textContent =
+            "📩 Thanks for reaching out! Please leave your email and we’ll contact you soon.";
+          messages.appendChild(aiMsg);
+          messages.scrollTop = messages.scrollHeight;
+        }, 800);
+      });
+    </script>
+    <script src="/script.js/cursor.js"></script>
+    <script>
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(function(battery) {
+      function updateBattery() {
+        const level = Math.round(battery.level * 100);
+        const charging = battery.charging ? "⚡" : "";
+        document.getElementById("battery-status").textContent =
+          `🔋 ${level}% ${charging}`;
+      }
+
+      // Initial update
+      updateBattery();
+
+      // Update on change
+      battery.addEventListener("levelchange", updateBattery);
+      battery.addEventListener("chargingchange", updateBattery);
+    });
+  } else {
+    document.getElementById("battery-status").textContent =
+      "⚠️ Battery API not supported";
+  }
+</script>
+  </body>
+</html>

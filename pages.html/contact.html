@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Perspective AI</title>
+    <link rel="icon" href="/Images/perspective-ai.png" type="image/x-icon">
+   
+    <meta name="description" content="Perspective AI offers cutting-edge AI solutions including AI Chat Bots, AI Text Generators, AI Video Generators, and more. Transform your business with our advanced artificial intelligence services.">
+
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+   
+     <link rel="stylesheet" href="/pages.css/base.css">
+    <link href="/pages.css/contact.css" rel="stylesheet">
+    
+
+</head>
+<body>
+  <div class="ai-icons">
+  <i class="bi bi-cpu"></i>
+  <i class="bi bi-gear-fill"></i>
+  <i class="bi bi-lightbulb-fill"></i>
+  <i class="bi bi-diagram-3-fill"></i>
+  <i class="bi bi-graph-up-arrow"></i>
+  <i class="bi bi-cpu"></i>
+  <i class="bi bi-gear-fill"></i>
+  <i class="bi bi-lightbulb-fill"></i>
+  <i class="bi bi-diagram-3-fill"></i>
+  <i class="bi bi-graph-up-arrow"></i>
+  <i class="bi bi-cpu"></i>
+  <i class="bi bi-gear-fill"></i>
+  <i class="bi bi-lightbulb-fill"></i>
+  <i class="bi bi-diagram-3-fill"></i>
+  <i class="bi bi-graph-up-arrow"></i>
+</div>
+
+<!-- === NAVIGATION === -->
+    <header class="header">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="/Images/perspective-ai.png" alt="Perspective AI Logo">
+                Perspective AI
+            </a>
+            
+            <!-- Mobile Toggle -->
+             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            
+            <!-- Navigation Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages.html/AboutUs.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages.html/services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages.html/ai-tools.html">AI Tools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages.html/pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/pages.html/contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                 <button class="btn btn-outline-light me-3" id="themeToggle">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+      </button>
+                <!-- Get Started Button -->
+                <a href="contact.html" class="btn-get-started">
+                    Get Started
+                </a>
+
+                             <!-- Battery indicator -->
+  <div class="battery" id="battery-status" style="margin-left:auto; font-size:20px; color:white;">
+    🔋 Loading...
+  </div>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+
+<!-- Chatbot Widget -->
+ <!-- Chatbot Toggle Button -->
+<button id="chatbotToggle" class="chatbot-toggle">
+  <i class="bi bi-chat-dots-fill"></i>
+  <span id="chatText">Chat with us</span>
+</button>
+
+<!-- Chatbot Window -->
+<div id="chatbotWindow" class="chatbot-window d-none">
+  <div class="chatbot-header">
+    <span>AI Contact Bot</span>
+    <button class="chatbot-close" id="chatbotClose">✖</button>
+  </div>
+  <div class="chatbot-body" id="chatbotMessages">
+    <div class="chatbot-msg bot">👋 Hi! I’m here to help. What’s your question?</div>
+  </div>
+  <div class="chatbot-footer">
+    <input type="text" id="chatbotInput" placeholder="Type a message...">
+    <button id="chatbotSend">Send</button>
+  </div>
+</div>
+
+
+
+<!-- Vertical Right-Center Feedback Button -->
+<button class="feedback-toggle" id="feedbackToggle">
+   Feedback <i class="bi bi-chat-dots"></i>
+</button>
+
+<!-- Feedback Modal -->
+<div class="feedback-modal" id="feedbackModal">
+  <div class="feedback-header">
+    <span>Perspective AI Feedback</span>
+    <button id="closeFeedback"><i class="bi bi-x"></i></button>
+  </div>
+  <div class="feedback-body">
+    <div class="feedback-option"><i class="bi bi-bug"></i> Bug Report</div>
+    <div class="feedback-option"><i class="bi bi-lightbulb"></i> Feature Request</div>
+    <div class="feedback-option"><i class="bi bi-star"></i> General Feedback</div>
+  </div>
+
+  <div class="feedback-footer" style="display: flex; flex-direction: column; gap: 10px; padding: 16px;">
+    <textarea class="feedback-textarea" placeholder="Your feedback..." style="margin: 20px;"></textarea>
+    <button type="submit" class="feedback-submit" 
+    style="
+        background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);"
+        
+    
+>
+  Submit Feedback
+</button>
+  </div>
+</div>
+
+<div class="social-flip">
+  <div class="social-inner">
+    <!-- Front -->
+    <div class="social-front">SOCIAL</div>
+    <!-- Back -->
+    <div class="social-back">
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-whatsapp"></i></a>
+    </div>
+  </div>
+</div>
+
+
+ <!--curser-->
+
+
+  
+    <div class="pointer" id="movee"></div>
+  
+
+
+  
+    <div class="ptblr" id="mov1"></div>
+   
+
+
+    <!-- === PAGE HEADER === -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Contact Us</h1>
+            <p class="page-subtitle">
+                Ready to transform your business with AI? Get in touch with our experts today
+            </p>
+        </div>
+    </section>
+
+    <!-- === CONTACT INFORMATION === -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h3 class="contact-title">Our Office</h3>
+                        <div class="contact-info">
+                            <p>Perspective AI Headquarters</p>
+                            <p>Magarpatta IT Park, Hadapsar<br>
+                            Pune, Maharashtra 411013<br>
+                            India</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h3 class="contact-title">Phone</h3>
+                        <div class="contact-info">
+                            <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                            <p><a href="tel:+912067890123">+91 20 6789 0123</a></p>
+                            <p>Mon - Sat: 9:00 AM - 7:00 PM IST</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h3 class="contact-title">Email</h3>
+                        <div class="contact-info">
+                            <p><a href="mailto:hello@perspective.ai">hello@perspective.ai</a></p>
+                            <p><a href="mailto:support@perspective.ai">support@perspective.ai</a></p>
+                            <p>24/7 Email Support Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CONTACT FORM AND MAP === -->
+    <section class="section" style="background: rgba(26, 26, 46, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="contact-form">
+                        <form onsubmit="return validate()">
+  <h2 class="text-center mb-4">Contact Form</h2>
+
+  <!-- Success Message -->
+  <div id="successAlert" class="alert alert-success d-none" role="alert">
+    Form submitted successfully!
+  </div>
+
+  <!-- Row 1: Full Name + Email -->
+  <div class="row g-4">
+    <div class="col-md-6">
+      <label for="fullname" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="fullname" placeholder="Enter your full name" />
+      <span id="nameError" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+      <label for="fullemail" class="form-label">Email Address</label>
+      <input type="email" class="form-control" id="fullemail" placeholder="name@example.com" />
+      <span id="emailError" class="text-danger"></span>
+    </div>
+  </div>
+
+  <!-- Row 2: Phone + Age -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <label for="mobile" class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" id="mobile" placeholder="Enter phone no" />
+      <span id="mobileError" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+      <label for="age" class="form-label">Age</label>
+      <input type="number" class="form-control" id="age" placeholder="Enter your age" />
+      <span id="ageError" class="text-danger"></span>
+    </div>
+  </div>
+
+  <!-- Row 3: Gender (Full Width) -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-12">
+      <label class="form-label">Select Gender</label>
+      <div class="d-flex gap-4">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="Male" />
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="Female" />
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+      </div>
+      <span id="checkError" class="text-danger"></span>
+    </div>
+  </div>
+
+  <!-- Row 4: Country Code + State -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <label for="countryCode" class="form-label">Country Code</label>
+      <input type="text" class="form-control" id="countryCode" placeholder="e.g. +91" />
+    </div>
+    <div class="col-md-6">
+      <label for="state" class="form-label">Select State</label>
+      <select class="form-select" id="state">
+        <option selected disabled>Choose...</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Kerala">Kerala</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Row 5: City + Comments -->
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <label for="city" class="form-label">Select City</label>
+      <select class="form-select" id="city">
+        <option selected disabled>Choose...</option>
+        <option value="Pune">Pune</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Nashik">Nashik</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="textar" class="form-label">Comments</label>
+      <textarea class="form-control" id="textar" rows="3" placeholder="Enter your comments"></textarea>
+      <span id="textError" class="text-danger"></span>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="row mt-4">
+    <div class="col-md-12 text-center">
+      <input type="submit" class="btn btn-primary px-5" value="Submit">
+    </div>
+  </div>
+</form>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15133.618910975458!2d73.91790719425872!3d18.510603921293235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c048e2ca5ba7%3A0xf8f8f4a792c1beb2!2sMagarpatta%20City!5e0!3m2!1sen!2sin!4v1757009002693!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    </div>
+                    
+                    <div class="contact-cardd mt-4 mb-4">
+                        <div class="contact-icon">
+                            <i class="bi bi-building"></i>
+                        </div>
+                        <h3 class="contact-title">Why Visit Our Office?</h3>
+                        <div class="contact-info" style="text-align: left; width: 400px;">
+                            <p >&bull; Free AI consultation and business analysis</p>
+                            <p>&bull; Live demos of our AI solutions in action</p>
+                            <p>&bull; Meet our expert AI development team</p>
+                            <p>&bull; Tour our modern AI development facility</p>
+                            <p>&bull; Explore partnership opportunities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="footer">
+            <div class="container">
+                <div class="footer-links">
+                    <a href="/index.html">Home</a>
+                    <a href="/pages.html/AboutUs.html">About</a>
+                    <a href="/pages.html/services.html">Services</a>
+                    <a href="/pages.html/ai-tools.html">Ai Tools</a>
+                    <a href="/pages.html/contact.html active">Contact</a>
+                    <a href="/pages.html/pricing.html">Pricing</a>
+                </div>
+                <div class="footer-text">
+                    <p>&copy; 2025 Perspective AI. All rights reserved. | Pune,
+                        Maharashtra, India</p>
+                    <p>Leading AI Solutions Provider | Transforming Businesses
+                        with Artificial Intelligence</p>
+                </div>
+            </div>
+        </footer>
+
+        
+
+           
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+</script>
+<script src="/script.js/contactani.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    function validate() {
+      let isValid = true;
+
+      // Reset previous errors
+      document.querySelectorAll("span.text-danger").forEach(el => el.innerText = "");
+
+      // Full name
+      const fullname = document.getElementById("fullname").value.trim();
+      if (fullname === "") {
+        document.getElementById("nameError").innerText = "Full name is required.";
+        isValid = false;
+      }
+
+      // Email
+      const email = document.getElementById("fullemail").value.trim();
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (email === "" || !email.match(emailPattern)) {
+        document.getElementById("emailError").innerText = "Enter a valid email address.";
+        isValid = false;
+      }
+
+      // Mobile
+      const mobile = document.getElementById("mobile").value.trim();
+      if (mobile === "" || mobile.length < 10) {
+        document.getElementById("mobileError").innerText = "Enter a valid phone number.";
+        isValid = false;
+      }
+
+      // Age
+      const age = document.getElementById("age").value.trim();
+      if (age === "" || isNaN(age) || age < 1) {
+        document.getElementById("ageError").innerText = "Enter a valid age.";
+        isValid = false;
+      }
+
+      // Gender
+      const gender = document.querySelector('input[name="gender"]:checked');
+      if (!gender) {
+        document.getElementById("checkError").innerText = "Please select your gender.";
+        isValid = false;
+      }
+
+      // Comments
+      const comments = document.getElementById("textar").value.trim();
+      if (comments === "") {
+        document.getElementById("textError").innerText = "Comments are required.";
+        isValid = false;
+      }
+
+      // If all valid
+      if (isValid) {
+        document.getElementById("successAlert").classList.remove("d-none");
+      } else {
+        document.getElementById("successAlert").classList.add("d-none");
+      }
+
+      return false; // prevent actual form submit
+    }
+  </script>
+  <script src="/script.js/toggle.js"></script>
+  <script src="/script.js/feedack.js"></script>
+  
+   <script>
+      const toggle = document.getElementById('chatbotToggle');
+const windowEl = document.getElementById('chatbotWindow');
+const closeBtn = document.getElementById('chatbotClose');
+const input = document.getElementById('chatbotInput');
+const sendBtn = document.getElementById('chatbotSend');
+const messages = document.getElementById('chatbotMessages');
+const chatText = document.getElementById('chatText');
+
+// Toggle chatbot
+toggle.addEventListener('click', () => {
+  windowEl.classList.toggle('d-none');
+  chatText.innerText = ""; // remove text after first click
+});
+
+closeBtn.addEventListener('click', () => {
+  windowEl.classList.add('d-none');
+  chatText.innerText = "Chat with us"; // restore text on close
+});
+
+// Send Message
+sendBtn.addEventListener('click', () => {
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const userMsg = document.createElement('div');
+  userMsg.className = "chatbot-msg user";
+  userMsg.textContent = msg;
+  messages.appendChild(userMsg);
+
+  input.value = "";
+
+  setTimeout(() => {
+    const aiMsg = document.createElement('div');
+    aiMsg.className = "chatbot-msg bot";
+    aiMsg.textContent = "📩 Thanks for reaching out! Please leave your email and we’ll contact you soon.";
+    messages.appendChild(aiMsg);
+    messages.scrollTop = messages.scrollHeight;
+  }, 800);
+});
+
+
+    </script>
+<script src="/script.js/cursor.js"></script>
+<script>
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(function(battery) {
+      function updateBattery() {
+        const level = Math.round(battery.level * 100);
+        const charging = battery.charging ? "⚡" : "";
+        document.getElementById("battery-status").textContent =
+          `🔋 ${level}% ${charging}`;
+      }
+
+      // Initial update
+      updateBattery();
+
+      // Update on change
+      battery.addEventListener("levelchange", updateBattery);
+      battery.addEventListener("chargingchange", updateBattery);
+    });
+  } else {
+    document.getElementById("battery-status").textContent =
+      "⚠️ Battery API not supported";
+  }
+</script>
+</body>
+</html>
